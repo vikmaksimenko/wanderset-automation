@@ -15,6 +15,7 @@ sudo apt-get install oracle-java8-installer
 ```
 sudo apt-get install maven
 ``` 
+* Install Chrome Browser
 
 ### How to run
 
