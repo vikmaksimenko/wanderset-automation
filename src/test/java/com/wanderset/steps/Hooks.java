@@ -11,6 +11,8 @@ import io.qameta.allure.model.TestResult;
 import io.qameta.allure.selenide.AllureSelenide;
 
 import java.util.function.Consumer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.junit.Assert.fail;
 
@@ -26,11 +28,19 @@ public class Hooks {
 
         for (String tag : scenario.getSourceTagNames()) {
             if (tag.contains("issue")) {
-                fail("foo");
+                String message = "The case is marked with @issue.";
+
+                Pattern pattern = Pattern.compile("@issue=(.*)");
+                Matcher matcher = pattern.matcher(tag);
+                if(matcher.matches()) {
+                    String linkPattern = System.getProperty("allure.link.issue.pattern");
+                    String link = linkPattern.replace("{}", matcher.group(1));
+                    message += "Sea details in " + link;
+                }
+
+                fail(message);
             }
         }
-
-
     }
 
     @After

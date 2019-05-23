@@ -66,7 +66,8 @@
                         -Dcucumber.options="--plugin io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"
                     </argLine>
                     <systemPropertyVariables>
-                        <allure.results.directory>target/allure-results</allure.results.directory>
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                        <allure.link.issue.pattern>https://pubguard.atlassian.net/browse/{}</allure.link.issue.pattern>
                     </systemPropertyVariables>
                 </configuration>
                 <dependencies>
